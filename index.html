@@ -609,6 +609,59 @@
       border-radius: 2px;
     }
 
+    /* ─── CONVEYOR COMPONENT GALLERY ─── */
+    .component-gallery {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1px;
+      background: rgba(255,255,255,0.05);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .component-item {
+      position: relative;
+      background: var(--card2);
+      aspect-ratio: 1 / 1;
+      overflow: hidden;
+      cursor: default;
+    }
+    .component-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      padding: 0.6rem;
+      filter: grayscale(15%) brightness(0.92);
+      transition: filter 0.35s, transform 0.35s;
+    }
+    .component-item:hover img {
+      filter: grayscale(0%) brightness(1.05);
+      transform: scale(1.08);
+    }
+    .component-label {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 0.4rem 0.5rem 0.35rem;
+      background: linear-gradient(to top, rgba(5,5,5,0.92), transparent);
+      font-size: 0.58rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--gold);
+      text-align: center;
+      opacity: 0;
+      transform: translateY(4px);
+      transition: opacity 0.3s, transform 0.3s;
+    }
+    .component-item:hover .component-label {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    @media (max-width: 768px) {
+      .component-gallery { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 480px) {
+      .component-gallery { grid-template-columns: repeat(2, 1fr); }
+    }
+
     /* ─── SKILLS ─── */
     #skills { background: var(--surface); }
 
@@ -1073,8 +1126,8 @@
         <div class="timeline-item">
           <div class="timeline-dot"></div>
           <div class="timeline-period">Jan – May 2026</div>
-          <div class="timeline-role">XY Plotter — Capstone Design Project</div>
-          <div class="timeline-org">Final Year Mechanical Engineering Project</div>
+          <div class="timeline-role">XY Plotter — Mechanical Design &amp; Fabrication Project</div>
+          <div class="timeline-org">Mechanical Design Project</div>
           <div class="timeline-desc">
             Led the full mechanical design cycle for a functional 2D plotter, from concept to 
             working prototype. Responsible for the SolidWorks assembly — carriage mechanism, 
@@ -1175,39 +1228,40 @@
 
         <!-- Project 1: XY Plotter -->
         <article class="project-card fade-in">
-          <img src="https://images.unsplash.com/photo-1565043666747-69f6646db940?w=600&q=80"
-               alt="XY Plotter mechanical assembly" class="project-img">
+          <img src="images/xy-plotter.jpg"
+               alt="XY Plotter mechanical design and fabrication" class="project-img">
           <div class="project-body">
-            <div class="project-num">01 — Capstone Project</div>
-            <h3 class="project-title">XY Plotter Machine</h3>
+            <div class="project-num">01 — Mechanical Design Project</div>
+            <h3 class="project-title">XY Plotter — Mechanical Design &amp; Fabrication</h3>
             <div class="project-case">
               <div class="project-case-label">Problem Statement</div>
-              <div class="project-case-text">Design a functional 2-axis drawing machine capable of controlled planar motion with acceptable positional accuracy.</div>
+              <div class="project-case-text">Design and fabricate a functional 2-axis drawing machine capable of controlled planar motion with reliable positional accuracy.</div>
             </div>
             <div class="project-case">
               <div class="project-case-label">Design Approach</div>
-              <div class="project-case-text">Full mechanical assembly in SolidWorks — guide rail system, carriage design, motor mounts, and structural frame optimised for rigidity and low friction.</div>
+              <div class="project-case-text">Complete CAD modeling and assembly design in SolidWorks — guide rail system, carriage motion mechanism, motor mounts, and structural frame — followed by physical fabrication and mechanical system integration with motion control hardware.</div>
             </div>
             <div class="project-case">
               <div class="project-case-label">Engineering Outcome</div>
-              <div class="project-case-text">15% positional accuracy improvement through tolerance stack-up analysis. Complete drawing package produced for fabrication.</div>
+              <div class="project-case-text">15% positional accuracy improvement through tolerance stack-up analysis. Complete engineering drawing package produced to support fabrication and assembly.</div>
             </div>
             <div class="project-tools">
               <span class="tool-badge">SolidWorks</span>
               <span class="tool-badge">Assembly Design</span>
               <span class="tool-badge">Engineering Drawings</span>
-              <span class="tool-badge">Arduino</span>
+              <span class="tool-badge">Fabrication</span>
+              <span class="tool-badge">System Integration</span>
             </div>
           </div>
         </article>
 
         <!-- Project 2: Ti-Ta Implants -->
         <article class="project-card fade-in">
-          <img src="https://images.unsplash.com/photo-1530026405186-ed1f139313f8?w=600&q=80"
-               alt="Dental implant material research" class="project-img">
+          <img src="images/dental-implant-research.png"
+               alt="Titanium-Tantalum dental implant material research" class="project-img">
           <div class="project-body">
             <div class="project-num">02 — Materials Research</div>
-            <h3 class="project-title">Ti–Ta Alloy Dental Implants</h3>
+            <h3 class="project-title">Titanium–Tantalum Alloy Research for Dental Implant Applications</h3>
             <div class="project-case">
               <div class="project-case-label">Problem Statement</div>
               <div class="project-case-text">Evaluate Titanium–Tantalum alloys as a viable material system for dental implant design, considering mechanical and biocompatibility requirements.</div>
@@ -1229,42 +1283,66 @@
         </article>
 
         <!-- Project 3: Conveyor -->
-        <article class="project-card fade-in">
-          <img src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?w=600&q=80"
-               alt="Conveyor system mechanical design" class="project-img">
+        <article class="project-card fade-in" style="grid-column: 1 / -1;">
+          <img src="images/conveyor-assembly.png"
+               alt="Conveyor mechanical system design" class="project-img">
+
+          <div class="component-gallery">
+            <div class="component-item">
+              <img src="images/motor-gearbox-model.png" alt="Motor and gearbox assembly">
+              <div class="component-label">Motor &amp; Gearbox</div>
+            </div>
+            <div class="component-item">
+              <img src="images/aluminium-profile-bracket.png" alt="Aluminium structural profile">
+              <div class="component-label">Aluminium Profile</div>
+            </div>
+            <div class="component-item">
+              <img src="images/roller-bearing-component.png" alt="Roller bearing component">
+              <div class="component-label">Roller Bearing</div>
+            </div>
+            <div class="component-item">
+              <img src="images/mounting-bracket.png" alt="Mounting bracket">
+              <div class="component-label">Mounting Bracket</div>
+            </div>
+            <div class="component-item">
+              <img src="images/sheet-metal-guide.png" alt="Guide rail support member">
+              <div class="component-label">Guide Rail Member</div>
+            </div>
+          </div>
+
           <div class="project-body">
             <div class="project-num">03 — Assembly Design</div>
-            <h3 class="project-title">Conveyor Mechanical System</h3>
+            <h3 class="project-title">Conveyor Mechanical System Design</h3>
             <div class="project-case">
               <div class="project-case-label">Problem Statement</div>
               <div class="project-case-text">Design a conveyor assembly suitable for light industrial material handling, covering drive, frame, and tensioning sub-systems.</div>
             </div>
             <div class="project-case">
               <div class="project-case-label">Design Approach</div>
-              <div class="project-case-text">Component-level CAD of drive rollers, idler rollers, frame structure, and tensioning mechanism in SolidWorks. Applied DFM principles throughout.</div>
+              <div class="project-case-text">Component-level CAD of drive rollers, idler rollers, structural frame, and roller tensioning mechanism in SolidWorks. Applied design-for-manufacturability principles throughout the assembly.</div>
             </div>
             <div class="project-case">
               <div class="project-case-label">Engineering Outcome</div>
-              <div class="project-case-text">Manufacturing-ready model with full BOM and engineering drawing set. Detailed breakdown — coming soon.</div>
+              <div class="project-case-text">Manufacturing-ready model with full BOM and engineering drawing set. Detailed engineering breakdown coming soon.</div>
             </div>
             <div class="project-tools">
               <span class="tool-badge">SolidWorks</span>
               <span class="tool-badge">DFM</span>
               <span class="tool-badge">Mechanical Assembly</span>
+              <span class="tool-badge">Industrial Handling</span>
             </div>
           </div>
         </article>
 
-        <!-- Project 4: CAD Portfolio -->
+        <!-- Project 4: Mechanical Design Portfolio -->
         <article class="project-card fade-in">
-          <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=600&q=80"
-               alt="Mechanical CAD product portfolio" class="project-img">
+          <img src="images/roller-bearing-component.png" alt="Mechanical CAD assembly portfolio" class="project-img">
           <div class="project-body">
             <div class="project-num">04 — Product Design</div>
-            <h3 class="project-title">Mechanical CAD Portfolio</h3>
+            <h3 class="project-title">Mechanical Design Portfolio</h3>
             <div class="project-case">
               <div class="project-case-label">Scope</div>
-              <div class="project-case-text">A collection of CAD models developed across product design, consumer goods, and mechanical component categories — demonstrating range and modeling quality.</div>
+              <div class="project-case-text">A curated collection of CAD models, assemblies, engineering drawings, and component designs demonstrating practical mechanical design thinking, manufacturability awareness, dimensional accuracy, and engineering intent.</div>
             </div>
             <div class="project-case">
               <div class="project-case-label">Design Focus</div>
@@ -1278,53 +1356,6 @@
               <span class="tool-badge">SolidWorks</span>
               <span class="tool-badge">AutoCAD</span>
               <span class="tool-badge">Product Design</span>
-            </div>
-          </div>
-        </article>
-
-        <!-- Placeholder 5 -->
-        <article class="project-card placeholder fade-in">
-          <div class="project-placeholder-img">
-            <svg width="40" height="40" fill="none" viewBox="0 0 24 24" stroke="#C9A84C" stroke-width="1">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
-              <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-            </svg>
-            <span>Engineering Breakdown Coming Soon</span>
-          </div>
-          <div class="project-body">
-            <div class="project-num">05 — In Progress</div>
-            <h3 class="project-title">Wearable Device — CAD Concept</h3>
-            <div class="project-case">
-              <div class="project-case-label">Design Focus</div>
-              <div class="project-case-text">Concept CAD for a non-invasive wearable health monitor — ergonomic enclosure, compact internal packaging, and material specification for wearability.</div>
-            </div>
-            <div class="project-tools">
-              <span class="tool-badge">SolidWorks</span>
-              <span class="tool-badge">Ergonomic Design</span>
-              <span class="tool-badge">Enclosure Design</span>
-            </div>
-          </div>
-        </article>
-
-        <!-- Placeholder 6 -->
-        <article class="project-card placeholder fade-in">
-          <div class="project-placeholder-img">
-            <svg width="40" height="40" fill="none" viewBox="0 0 24 24" stroke="#C9A84C" stroke-width="1">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/>
-            </svg>
-            <span>Engineering Breakdown Coming Soon</span>
-          </div>
-          <div class="project-body">
-            <div class="project-num">06 — Upcoming</div>
-            <h3 class="project-title">Sheet Metal Bracket System</h3>
-            <div class="project-case">
-              <div class="project-case-label">Design Focus</div>
-              <div class="project-case-text">Structural bracket family designed for sheet metal fabrication — applying bend allowance, material thickness, and DFM guidelines for laser-cut and press-brake manufacture.</div>
-            </div>
-            <div class="project-tools">
-              <span class="tool-badge">SolidWorks Sheet Metal</span>
-              <span class="tool-badge">DFM</span>
-              <span class="tool-badge">AutoCAD</span>
             </div>
           </div>
         </article>
@@ -1412,9 +1443,9 @@
             <div class="skill-item">
               <div class="skill-header">
                 <span class="skill-name">Surface Modeling</span>
-                <span class="skill-level lvl-int">Intermediate</span>
+                <span class="skill-level">Foundational Knowledge</span>
               </div>
-              <div class="skill-bar"><div class="skill-fill" data-width="52"></div></div>
+              <div class="skill-bar"><div class="skill-fill" data-width="28"></div></div>
             </div>
           </div>
 
@@ -1564,7 +1595,7 @@
     <div class="section-inner">
       <div class="fade-in">
         <p class="section-label">Let's Connect</p>
-        <h2 class="section-title">Open to Design<br>Opportunities</h2>
+        <h2 class="section-title">Let's Build Better<br>Mechanical Systems</h2>
         <div class="section-divider"></div>
       </div>
 
